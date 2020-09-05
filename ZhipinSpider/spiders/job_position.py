@@ -17,9 +17,9 @@ class JobPositionSpider(scrapy.Spider):
             item = ZhipinspiderItem()
             #匹配//div[@class="job-primary"]节点下的/div[@class="info-primary"]节点
             info_primary = job_primary.xpath('./div[@class="info-primary"]')
-            item['title'] = info_primary.xpath('./h3/a/div[@class="job-title"]/text()').extract_first()
-            item['salary'] = info_primary.xpath('./h3/a/span[@class="red"]/text()').extract_first()
-            item['work_addr'] = info_primary.xpath('./p/text()').extract_first()
+            item['title'] = info_primary.xpath('./div[@class="primary-wrapper"]/div[@class="primary-box"]/div[@class="job-title"]/span[@class="job-name"]/a/text()').extract_first()
+            item['salary'] = info_primary.xpath('./div[@class="primary-wrapper"]/div[@class="primary-box"]/div[@class="job-limit clearfix"]/span[@class="red"]/text()').extract_first()
+            item['work_addr'] = info_primary.xpath('.div[@class="primary-wrapper"]/div[@class="primary-box"]/div[@class="job-title"]/span[@class="job-area-wrapper"]/span[@class="job-area"]/text()').extract_first()
             item['url'] = info_primary.xpath('./h3a/@herf').extract_first()
 
             company_text = job_primary.xpath('./div[@class="info-company"]' + '/div[@class="company-text"]' )
